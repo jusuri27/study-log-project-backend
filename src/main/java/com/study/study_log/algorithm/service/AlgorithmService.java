@@ -1,9 +1,9 @@
-package com.study.study_log.solve.service;
+package com.study.study_log.algorithm.service;
 
-import com.study.study_log.solve.dto.AlgorithmCreateReq;
-import com.study.study_log.solve.dto.AlgorithmUpdateReq;
-import com.study.study_log.solve.entity.Algorithm;
-import com.study.study_log.solve.repository.AlgorithmRepository;
+import com.study.study_log.algorithm.dto.AlgorithmCreateReq;
+import com.study.study_log.algorithm.dto.AlgorithmUpdateReq;
+import com.study.study_log.algorithm.entity.Algorithm;
+import com.study.study_log.algorithm.repository.AlgorithmRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

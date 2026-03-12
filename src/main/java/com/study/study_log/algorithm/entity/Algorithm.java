@@ -1,4 +1,4 @@
-package com.study.study_log.solve.entity;
+package com.study.study_log.algorithm.entity;
 
 import jakarta.persistence.*;
 import lombok.*;

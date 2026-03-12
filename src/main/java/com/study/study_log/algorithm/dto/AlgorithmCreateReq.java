@@ -1,9 +1,9 @@
-package com.study.study_log.solve.dto;
+package com.study.study_log.algorithm.dto;
 
 import lombok.Getter;
 
 @Getter
-public class AlgorithmUpdateReq {
+public class AlgorithmCreateReq {
     private int lv;
     private String name;
     private int tryCount;
