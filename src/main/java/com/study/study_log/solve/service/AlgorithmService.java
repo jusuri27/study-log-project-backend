@@ -1,9 +1,9 @@
-package com.study.study_log.algorithm.service;
+package com.study.study_log.solve.service;
 
-import com.study.study_log.algorithm.dto.AlgorithmCreateReq;
-import com.study.study_log.algorithm.dto.AlgorithmUpdateReq;
-import com.study.study_log.algorithm.entity.Algorithm;
-import com.study.study_log.algorithm.repository.AlgorithmRepository;
+import com.study.study_log.solve.dto.AlgorithmCreateReq;
+import com.study.study_log.solve.dto.AlgorithmUpdateReq;
+import com.study.study_log.solve.entity.Algorithm;
+import com.study.study_log.solve.repository.AlgorithmRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,7 +20,7 @@ public class AlgorithmService {
         Algorithm algorithm = Algorithm.builder()
                 .lv(request.getLv())
                 .name(request.getName())
-                .tryCount(request.getTryCount())
+                .tryCount(request.getTryCount())  // todo: 생성시 푼 횟수 +1
                 .build();
         algorithmRepository.save(algorithm);
     }
