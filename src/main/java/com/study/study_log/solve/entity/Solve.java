@@ -1,5 +1,6 @@
 package com.study.study_log.solve.entity;
 
+import com.study.study_log.common.entity.BaseEntity;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -10,7 +11,7 @@ import org.hibernate.annotations.Comment;
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Solve {
+public class Solve extends BaseEntity {
     @Id
     @Column(name = "id")
     @Comment("푼 문제 ID")

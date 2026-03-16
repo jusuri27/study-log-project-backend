@@ -1,4 +1,4 @@
-package com.study.study_log.common;
+package com.study.study_log.common.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
