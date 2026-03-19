@@ -1,9 +1,9 @@
 spring:
   datasource:
-    url: jdbc:h2:mem:testdb
-    driver-class-name: org.h2.Driver
-    username: sa
-    password:                                   # H2는 기본 비밀번호 없음(비워도 됌)
+    url: jdbc:mysql://localhost:3306/study_log?allowPublicKeyRetrieval=true&useSSL=false
+    username: kjs
+    password: 1234
+    driver-class-name: com.mysql.cj.jdbc.Driver
   h2:
     console:
       enabled: true                             # 웹 콘솔 사용 가능 http://localhost:8080/h2-console
