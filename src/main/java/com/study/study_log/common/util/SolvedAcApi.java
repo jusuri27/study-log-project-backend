@@ -8,6 +8,11 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
+/**
+ * Solved.ac API 요청 공통 유틸 클래스
+ * 다양한 응답 DTO(태그, 문제 등)를 재사용하기 위해 제네릭 타입으로 반환한다.
+ * ex) SolvedAcTagRes, SolvedAcProblemRes
+ */
 public class SolvedAcApi {
     private static final HttpClient CLIENT = HttpClient.newHttpClient();
     private static final Gson gson = new Gson();
