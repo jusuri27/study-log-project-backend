@@ -12,12 +12,13 @@ import java.util.List;
 public class SolvedacTagRes {
     private List<TagItem> items;
 
+    @Getter
     public static class TagItem {
         private String key;
-        private int bojTagId;
+        private Long bojTagId;
         private List<DisplayName> displayNames;
     }
-
+    @Getter
     public static class DisplayName {
         private String language;
         private String name;
