@@ -1,7 +1,10 @@
 package com.study.study_log.problem.service;
 
+import com.study.study_log.problem.dto.SolvedAcProblemRes;
 import com.study.study_log.problem.dto.SolvedacTagRes;
+import com.study.study_log.problem.entity.SolvedAcProblem;
 import com.study.study_log.problem.entity.SolvedAcTag;
+import com.study.study_log.problem.repository.ProblemRepository;
 import com.study.study_log.problem.repository.ProblemTagRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -13,6 +16,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ProblemService {
     private final ProblemTagRepository problemTagRepository;
+    private final ProblemRepository problemRepository;
     private static final String DEFAULT_LANGUAGE = "ko";
 
     // solved.ac 태그 API 응답 데이터를 db에 저장
@@ -34,6 +38,21 @@ public class ProblemService {
         }
 
         problemTagRepository.saveAll(list);
+    }
+
+    public void createSolvedAcProblem(SolvedAcProblemRes response) {
+        List<SolvedAcProblem> list = new ArrayList<>();
+        for(SolvedAcProblemRes.ProblemItem item : response.getItems()) {
+            SolvedAcProblem solvedAcProblem = SolvedAcProblem.builder()
+                    .problemId(item.getProblemId())
+                    .acceptedUserCount(item.getAcceptedUserCount())
+                    .koTitle(item.getTitleKo())
+                    .level(item.getLevel())
+                    .build();
+
+            list.add(solvedAcProblem);
+        }
+        problemRepository.saveAll(list);
     }
 
     // 특정 언어에 해당하는 태그 이름 찾는 메서드
