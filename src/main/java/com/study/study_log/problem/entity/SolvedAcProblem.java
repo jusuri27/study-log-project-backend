@@ -16,7 +16,7 @@ public class SolvedAcProblem {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "problem_id", nullable = false)
+    @Column(name = "problem_id", nullable = false, unique = true)
     @Comment("백준 문제 번호로, 문제마다 고유합니다.")
     private Long problemId;
 
