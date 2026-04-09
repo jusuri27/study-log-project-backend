@@ -40,8 +40,11 @@ public class ProblemService {
         problemTagRepository.saveAll(list);
     }
 
+    // solved.ac 문제 API 응답 데이터를 db에 저장
     public void createSolvedAcProblem(SolvedAcProblemRes response) {
-        List<SolvedAcProblem> list = new ArrayList<>();
+        List<SolvedAcProblem> problems = new ArrayList<>();
+
+        // 문제 목록 순회
         for(SolvedAcProblemRes.ProblemItem item : response.getItems()) {
             SolvedAcProblem solvedAcProblem = SolvedAcProblem.builder()
                     .problemId(item.getProblemId())
@@ -50,9 +53,18 @@ public class ProblemService {
                     .level(item.getLevel())
                     .build();
 
-            list.add(solvedAcProblem);
+            // 해당 문제의 태그 목록 순회
+            for(SolvedAcProblemRes.Tag tagItem : item.getTags()) {
+                // DB에서 실제로 태그가 존재하는지 조회 (bojTagId 기준)
+                SolvedAcTag tag = problemTagRepository.findByBojTagId(tagItem.getBojTagId());
+
+                // 문제 엔티티에 태그 연관관계 추가
+                solvedAcProblem.addTag(tag);
+            }
+
+            problems.add(solvedAcProblem);
         }
-        problemRepository.saveAll(list);
+        problemRepository.saveAll(problems);
     }
 
     // 특정 언어에 해당하는 태그 이름 찾는 메서드

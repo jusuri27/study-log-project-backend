@@ -27,7 +27,11 @@ public class ProblemController {
     // solved.ac  문제 데이터를 가져와 DB에 저장하는 API
     @GetMapping()
     public void getProblem() throws IOException, InterruptedException {
-        SolvedAcProblemRes response = SolvedAcApi.requestSolvedAcApi("https://solved.ac/api/v3/search/problem?query=&page=1", SolvedAcProblemRes.class);
-        problemService.createSolvedAcProblem(response);
+        int totalPages = 677;
+
+        for(int i=1; i<=totalPages; i++) {
+            SolvedAcProblemRes response = SolvedAcApi.requestSolvedAcApi("https://solved.ac/api/v3/search/problem?query=&page=" + i, SolvedAcProblemRes.class);
+            problemService.createSolvedAcProblem(response);
+        }
     }
 }
