@@ -7,6 +7,14 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Comment;
 
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ * Solved.ac 문제 정보를 저장하는 엔티티
+ * 하나의 문제는 여러 개의 태그를 가질 수 있으며
+ * SolvedAcProblemTag를 통해 태그와 다대다 관계를 관리
+ */
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -32,11 +40,24 @@ public class SolvedAcProblem {
     @Comment("문제 난이도입니다")
     private int level;
 
+    /**
+     * 문제 - 태그 매핑 테이블
+     * SolvedAcProblemTag를 통해 태그와 다대다 관계를 중간 엔티티로 관리
+     */
+    @OneToMany(mappedBy = "problem", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<SolvedAcProblemTag> problemTags = new ArrayList<>();
+
     @Builder
-    private SolvedAcProblem(Long problemId, int acceptedUserCount, String koTitle, int level) {
+    private SolvedAcProblem(Long problemId, int acceptedUserCount, String koTitle, int level, List<SolvedAcProblemTag> problemTags) {
         this.problemId = problemId;
         this.acceptedUserCount = acceptedUserCount;
         this.koTitle = koTitle;
         this.level = level;
     }
+
+    public void addTag(SolvedAcTag tag) {
+        SolvedAcProblemTag problemTag = new SolvedAcProblemTag(tag, this);
+        this.problemTags.add(problemTag);
+    }
+
 }
