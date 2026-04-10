@@ -4,4 +4,5 @@ import com.study.study_log.problem.entity.SolvedAcTag;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface ProblemTagRepository extends JpaRepository<SolvedAcTag, Long> {
+    SolvedAcTag findByBojTagId(int bojTagId);
 }
